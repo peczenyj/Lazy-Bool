@@ -11,3 +11,6 @@ Revision history for Perl extension Lazy::Bool.
 	- turn & I shortcut evaluated
 	- add Lazy::Bool::Cached
 	- move to Dist::Zilla
+	
+0.04   Wed Jan 23 23:29:43 2013 
+	- Improve documentation, readme, etc
