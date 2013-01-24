@@ -190,14 +190,6 @@ A complex example:
   ok($result,    "complex expression should be true");
   ok(!! $x ,  "double negation of true value should be true");	
   ok(!!! $false, "truple negation of false value should be true");	
-
-=head2 TODO
-
-There are lots of things to do. Please send me feedback! It is justa a P.O.C. but it can be useful in some situation.
-
-For example, how we can add support to shortcut operations? or support && and || ?
-
-And how about avoid evaluate the same boolean twice?
 	
 =head1 EXPORT
 
