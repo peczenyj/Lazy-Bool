@@ -126,10 +126,14 @@ But I don't know what is the best way to do this. I'm using & and | operators si
 
 The question about cache is interesting. In some cases I can't 'memoize' the result. I have two options:
 
-- create another class like Lazu::Bool::Memoized to do this, or
+- create another class like Lazy::Bool::Memoized to do this, or
 - add an extra parameter in the contructor, like cached => 1
 
 I'm very interesting in your opinion! Please give me some feedback :)
+
+###UPDATE###
+
+From version 0.03 there all boolean expression now supports shortcut and there is a new class, Lazy::Bool::Cached who memoize the value of the expression.
 
 ##How to install##
 To install this module is simple:
