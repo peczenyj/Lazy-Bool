@@ -39,7 +39,7 @@ Lazy::Bool::Cached - Boolean wrapper lazy with memoize
 
   use Lazy::Bool::Cached;
 
-  my $result = Lazy::Bool->new(sub{  
+  my $result = Lazy::Bool::Cached->new(sub{  
   	# complex boolean expression
   });
 
