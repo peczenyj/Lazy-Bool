@@ -15,7 +15,7 @@ my $result = ($x | $false) & ( ! ( $false & ! $false ) );
 # now the expressions will be evaluate
 ok($result,    "complex expression should be true");
 ok(!! $x ,  "double negation of true value should be true");  
-ok(!!! $false, "truple negation of false value should be true");
+ok(!!! $false, "triple negation of false value should be true");
 ```
 
 <!--more-->
@@ -135,9 +135,36 @@ I'm very interesting in your opinion! Please give me some feedback :)
 
 From version 0.03 there all boolean expression now supports shortcut and there is a new class, Lazy::Bool::Cached who memoize the value of the expression.
 
+##Helpers##
+
+There are two helpers to easily create new instances from an anonymous subroutine: lzb and lzbc 
+
+```perl
+use Test::More tests => 2;
+
+use Lazy::Bool qw(lzb);
+use Lazy::Bool::Cached qw(lzbc);
+
+ok( lzb { 1 }, "lzb should be true" );
+ok( lzbc { 1 }, "lzbc should be true" );
+```
+
 ##How to install##
 To install this module is simple:
 	bash$ cpan Lazy::Bool
+
+###Test Coverage##
+
+Total 96.6 % 
+```
+---------------------------- ------ ------ ------ ------ ------ ------ ------
+File                           stmt   bran   cond    sub    pod   time  total
+---------------------------- ------ ------ ------ ------ ------ ------ ------
+blib/lib/Lazy/Bool.pm         100.0  100.0   66.7  100.0   75.0   64.9   97.2
+blib/lib/Lazy/Bool/Cached.pm  100.0  100.0   66.7  100.0   50.0   35.1   95.7
+Total                         100.0  100.0   66.7  100.0   66.7  100.0   96.6
+---------------------------- ------ ------ ------ ------ ------ ------ ------
+```
 	
 ##Final Considerations##
 

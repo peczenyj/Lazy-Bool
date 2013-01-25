@@ -1,31 +1,44 @@
 package Lazy::Bool::Cached;
-use parent 'Lazy::Bool';
 
-use overload 
-	'bool' => \&_to_bool;
-	
-sub new {
-  my ($type, $code) = @_;
-	
-	my $klass = ref($type) || $type;
-	
-	my $ref = (ref($code) eq 'CODE')? $code : sub { $code };
-	
-	bless { 
-	  code => $ref, 
-	  cached => undef
-	} => $klass
+use 5.010000;
+use strict;
+use warnings;
+use parent 'Lazy::Bool';
+use Exporter 'import';
+
+our $VERSION   = '0.05';
+our @EXPORT_OK = qw(lzbc);
+
+sub lzbc(&) {
+    my $code = shift;
+    __PACKAGE__->new($code);
 }
 
+sub new {
+    my ( $type, $code ) = @_;
+
+    my $klass = ref($type) || $type;
+
+    my $ref = ( ref($code) eq 'CODE' ) ? $code : sub { $code };
+
+    bless {
+        code   => $ref,
+        cached => undef
+    } => $klass;
+}
+
+use overload 'bool' => \&_to_bool;
+
 sub _to_bool {
-  my ($self) = @_;
-  
-  # Yes, we can use this:
-  # $self->{cached} //= $self->{code}->()
-  # but the // operator is only supported from Perl 5.10.0
-  # And this module will be compatible with old versions
-  
-  $self->{cached} = (defined $self->{cached})? $self->{cached} : $self->{code}->()
+    my ($self) = @_;
+
+    # Yes, we can use this:
+    # $self->{cached} //= $self->{code}->()
+    # but the // operator is only supported from Perl 5.10.0
+    # And this module will be compatible with old versions
+
+    $self->{cached} =
+      ( defined $self->{cached} ) ? $self->{cached} : $self->{code}->();
 }
 
 1;
@@ -43,7 +56,7 @@ Lazy::Bool::Cached - Boolean wrapper lazy with memoize
   	# complex boolean expression
   });
 
-  ...
+  #...
   if($result) { # now we evaluate the expression
 	
   }
@@ -51,7 +64,10 @@ Lazy::Bool::Cached - Boolean wrapper lazy with memoize
   if($result) { # do not evaluate again. it is cached.
 
   }
-Using this module you can play with lazy booleans. Using expressions &, | and ! you can delay the expression evaluation until necessary.
+  
+ # Using this module you can play with lazy booleans. 
+
+ # With expressions '&', '|' and '!' you can delay the expression evaluation until necessary.
 
 =head1 DESCRIPTION
 
@@ -59,7 +75,13 @@ This class extends Lazy::Bool
 	
 =head1 EXPORT
 
-None 
+This package can export the helper lzbc to easily create a new instance of Lazy::Bool::Cached
+
+  use Lazy::Bool::Cached qw(lzbc);
+  
+  my $a = 6;
+  my $b = 4;
+  my $condition = lzbc { $a > $b };
 
 =head1 SEE ALSO
 
