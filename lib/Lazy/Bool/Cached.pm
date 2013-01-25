@@ -72,16 +72,22 @@ Lazy::Bool::Cached - Boolean wrapper lazy with memoize
 =head1 DESCRIPTION
 
 This class extends Lazy::Bool
+
+=head2 Functions
+
+=head3 lzbc
+
+Helper to create an instance 
+
+  use Lazy::Bool::Cached qw(lzbc);
+
+  my $a = 6;
+  my $b = 4;
+  my $condition = lzbc { $a > $b };
 	
 =head1 EXPORT
 
 This package can export the helper lzbc to easily create a new instance of Lazy::Bool::Cached
-
-  use Lazy::Bool::Cached qw(lzbc);
-  
-  my $a = 6;
-  my $b = 4;
-  my $condition = lzbc { $a > $b };
 
 =head1 SEE ALSO
 

@@ -187,6 +187,18 @@ Used as a logical negation (not), you can create a lazy negation.
 
   print "success" if $result; # now will be evaluated!
 
+=head2 Functions
+
+=head3 lzb
+
+Helper to create an instance.
+
+  use Lazy::Bool qw(lzb);
+
+  my $a = 6;
+  my $b = 4;
+  my $condition = lzb { $a > $b };
+
 =head2 EXAMPLES
 
 A complex example:
@@ -206,14 +218,8 @@ A complex example:
   ok(!!! $false, "truple negation of false value should be true");	
 	
 =head1 EXPORT
-T
-his package can export the helper lzbc to easily create a new instance of Lazy::Bool
 
-  use Lazy::Bool qw(lzb);
-  
-  my $a = 6;
-  my $b = 4;
-  my $condition = lzb { $a > $b };
+This package can export the helper lzbc to easily create a new instance of Lazy::Bool
 
 =head1 SEE ALSO
 
