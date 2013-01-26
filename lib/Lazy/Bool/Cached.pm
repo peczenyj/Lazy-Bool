@@ -3,10 +3,10 @@ package Lazy::Bool::Cached;
 use 5.010000;
 use strict;
 use warnings;
-use parent 'Lazy::Bool';
+use base 'Lazy::Bool';
 use Exporter 'import';
 
-our $VERSION   = '0.05';
+our $VERSION   = '0.05.1';
 our @EXPORT_OK = qw(lzbc);
 
 sub lzbc(&) {
